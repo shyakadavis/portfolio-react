@@ -1,0 +1,8 @@
+.technology-stack > .icons img {
+  width: 60px;
+  /* height: 50px; */
+}
+
+.technology-stack > .icons {
+  display: flex;
+}

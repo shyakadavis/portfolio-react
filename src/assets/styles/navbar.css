@@ -1,0 +1,67 @@
+#globalHeader {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: calc(235 / 1500 * 100vw);
+  max-width: 235px;
+  height: 100vh;
+  z-index: 100;
+}
+
+#globalNav {
+  display: flex;
+  justify-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  max-width: 430px;
+  width: calc(430 / 1000 * 100vh);
+  height: 1em;
+  transform: rotate(90deg);
+  transform-origin: 0 100%;
+  margin-top: calc(200 / 1500 * 100vh);
+  margin-left: 100px;
+}
+
+#globalNav .menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#globalNav .menu a {
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.2s ease 0.1s;
+  font-weight: 300;
+}
+
+#globalNav .menu a:hover {
+  color: var(--secondary);
+}
+
+#globalNav .menu a i {
+  font-size: 1.5em;
+  transform: rotate(-90deg);
+}
+
+@media (max-width: 575.98px) {
+  #globalHeader {
+    width: 90px;
+  }
+  #globalNav {
+    width: 250px;
+    margin-top: 30px;
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #globalHeader {
+    /* width: 90px; */
+  }
+  #globalNav {
+    width: 1000px;
+    margin-top: 30px;
+    margin-left: 50px;
+  }
+}
