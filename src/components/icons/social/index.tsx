@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
+import { IconName } from './iconTypes'
 import {
   AiOutlineMail,
   AiOutlineGithub,
@@ -10,29 +11,34 @@ import { FaLinkedinIn } from 'react-icons/fa'
 import { FiExternalLink, FiMail } from 'react-icons/fi'
 
 interface Props {
-  kind: string
+  kind: IconName
   href?: string
-  size?: string
-}
-const components = {
-  mail: FiMail,
-  github: AiOutlineGithub,
-  facebook: AiOutlineFacebook,
-  linkedin: FaLinkedinIn,
-  twitter: AiOutlineTwitter,
-  website: AiOutlineGlobal,
-  external: FiExternalLink
+  size?: number
 }
 
-const SocialIcon: React.FC<Props> = ({ kind, href, size = 8 }) => {
+export const SocialIcon: FunctionComponent<Props> = ({ kind, href, size }) => {
+  const iconMap = {
+    mail: FiMail,
+    github: AiOutlineGithub,
+    facebook: AiOutlineFacebook,
+    linkedin: FaLinkedinIn,
+    twitter: AiOutlineTwitter,
+    website: AiOutlineGlobal,
+    external: FiExternalLink
+  }
+
+  const SocialSvg = iconMap[kind]
+
+  if (!SocialSvg) {
+    return null
+  }
+
   if (
     !href ||
     (kind === 'mail' &&
       !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href))
   )
     return null
-
-  const SocialSvg = components[kind]
 
   return (
     <a
@@ -48,5 +54,3 @@ const SocialIcon: React.FC<Props> = ({ kind, href, size = 8 }) => {
     </a>
   )
 }
-
-export default SocialIcon

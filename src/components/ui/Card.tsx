@@ -1,4 +1,4 @@
-import SocialIcon from '../social-icons/index'
+import { SocialIcon } from '../icons/social/index'
 
 interface Props {
   title: string
@@ -24,16 +24,16 @@ const Card: React.FC<Props> = ({
     <div className="h-full transform overflow-hidden rounded-md border-[1.2px] border-solid border-secondary bg-transparent bg-opacity-20 transition duration-500 hover:scale-105 hover:rounded-md hover:border-tertiary hover:bg-gray-300 dark:border-secondary dark:hover:border-tertiary dark:hover:bg-matte">
       <div className="p-6">
         <div className="flex flex-row items-center justify-between">
-          <div className="my-2">{/* <FolderIcon /> */}</div>
+          <div className="my-2">{/* {<Folder />} */}</div>
           <div className="flex flex-row justify-between">
             <div className="mx-1.5">
               {href ? (
-                <SocialIcon kind="external" href={href} size="6" />
+                <SocialIcon kind="external" href={href} size={6} />
               ) : null}
             </div>
             <div className="mx-1.5">
               {github ? (
-                <SocialIcon kind="github" href={github} size="6" />
+                <SocialIcon kind="github" href={github} size={6} />
               ) : null}
             </div>
           </div>
