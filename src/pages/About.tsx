@@ -29,7 +29,7 @@ const About = () => {
       <Header />
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="summary bg-matte rounded-xl p-5 selection:text-primary selection:bg-secondary">
+        <div className="summary bg-matte hover:border hover:border-tertiary rounded-xl p-5 selection:text-primary selection:bg-secondary">
           <h3>
             Hi, I'm <span id="myName">Davis</span>
           </h3>
@@ -44,7 +44,7 @@ const About = () => {
             quiet there)
           </p>
         </div>
-        <div className="tech-stack bg-matte rounded-xl p-5 ">
+        <div className="tech-stack bg-matte rounded-xl p-5 hover:border hover:border-tertiary ">
           <div className="tech-stack-section-title text-center mb-2">
             <h1 className="text-2xl">
               Technology <span className="text-secondary">Stack</span>
