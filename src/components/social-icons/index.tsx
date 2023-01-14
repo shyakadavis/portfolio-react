@@ -10,7 +10,7 @@ import { FaLinkedinIn } from 'react-icons/fa'
 import { FiExternalLink, FiMail } from 'react-icons/fi'
 
 interface Props {
-  kind?: string
+  kind: string
   href?: string
   size?: string
 }

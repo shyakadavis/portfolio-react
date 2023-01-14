@@ -1,5 +1,4 @@
 import SocialIcon from '../social-icons/index'
-import FolderIcon from '../icon'
 
 interface Props {
   title: string
