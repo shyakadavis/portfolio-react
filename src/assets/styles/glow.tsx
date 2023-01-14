@@ -8,3 +8,5 @@ document.getElementById('cards').onmousemove = (e) => {
     card.style.setProperty('--mouse-y', `${y}px`)
   }
 }
+
+export {}
