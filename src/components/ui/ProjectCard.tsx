@@ -1,5 +1,5 @@
-import { SocialIcon } from '../icons/social/index'
-
+import { SocialIcon } from '../icons/social'
+import { OtherIcon } from '../icons/other'
 interface Props {
   title: string
   description: string
@@ -24,7 +24,9 @@ const Card: React.FC<Props> = ({
     <div className="h-full transform overflow-hidden rounded-md border-[1.2px] border-solid border-secondary bg-transparent bg-opacity-20 transition duration-500 hover:scale-105 hover:rounded-md hover:border-tertiary hover:bg-gray-300 dark:border-secondary dark:hover:border-tertiary dark:hover:bg-matte">
       <div className="p-6">
         <div className="flex flex-row items-center justify-between">
-          <div className="my-2">{/* {<Folder />} */}</div>
+          <div className="my-2">
+            <OtherIcon kind="folder" className="text-tertiary w-7" />
+          </div>
           <div className="flex flex-row justify-between">
             <div className="mx-1.5">
               {href ? (

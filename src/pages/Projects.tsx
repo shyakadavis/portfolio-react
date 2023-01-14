@@ -1,14 +1,15 @@
 import Header from '../components/Header'
-import Card from '../components/ui/Card'
+import ScrollToTop from '../components/ScrollToTop'
+import ProjectCard from '../components/ui/ProjectCard'
 import projectsData from '../data/projectsData'
 
 const Projects = () => {
   return (
     <section>
       <Header />
-      <div className="-m-4 flex flex-wrap">
+      <div className="-m-4 flex flex-wrap justify-center">
         {projectsData?.map((project, index) => (
-          <Card
+          <ProjectCard
             key={index}
             title={project?.title}
             description={project?.description}
@@ -21,6 +22,7 @@ const Projects = () => {
           />
         ))}
       </div>
+      <ScrollToTop />
     </section>
   )
 }

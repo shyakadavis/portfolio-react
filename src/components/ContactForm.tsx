@@ -1,17 +1,27 @@
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import { toast } from 'react-toastify'
+import { SocialIcon } from './icons/social'
 
 const ContactForm = () => {
   const inputLabelStyles = 'mt-5 mb-2 w-full'
   const inputFieldStyles =
     'bg-gray-700 border border-gray-300 text-white text-sm rounded-lg outline-none focus:ring-1 focus:ring-tertiary w-full p-2.5'
   const errorFeedbackStyles = 'text-red-500 mt-1 w-full'
+
+  // notification after  sending the message
+  const notifySuccess = () =>
+    toast.success(`😄 Message Sent. I'll get back to you soon.`, {
+      theme: 'colored'
+    })
   return (
     <section>
       <Formik
         initialValues={{ name: '', email: '', subject: '', message: '' }}
         onSubmit={async (values) => {
-          await new Promise((resolve) => setTimeout(resolve, 500))
+          await new Promise((resolve) => setTimeout(resolve, 500)).then((e) => {
+            notifySuccess()
+          })
           alert(JSON.stringify(values, null, 2))
         }}
         validationSchema={Yup.object().shape({

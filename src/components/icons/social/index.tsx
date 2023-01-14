@@ -13,7 +13,7 @@ import { FiExternalLink, FiMail } from 'react-icons/fi'
 interface Props {
   kind: IconName
   href?: string
-  size?: number
+  size: number
 }
 
 export const SocialIcon: FunctionComponent<Props> = ({ kind, href, size }) => {
@@ -49,7 +49,7 @@ export const SocialIcon: FunctionComponent<Props> = ({ kind, href, size }) => {
     >
       <span className="sr-only">{kind}</span>
       <SocialSvg
-        className={`text-gray-700 hover:text-primary-color-500 dark:text-gray-200 dark:hover:text-primary-color-dark-500 h-${size} w-${size}`}
+        className={`text-gray-700 hover:text-secondary dark:text-gray-200 dark:hover:text-primary-color-dark-500 h-${size} w-${size}`}
       />
     </a>
   )

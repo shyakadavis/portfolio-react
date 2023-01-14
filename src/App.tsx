@@ -5,9 +5,11 @@ import About from './pages/About'
 import Blogs from './pages/Blogs'
 import Boiler from './pages/Boiler'
 import Contact from './pages/Contact'
-import Error from './pages/Error'
+import Error from './pages/404'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route path="/boiler" element={<Boiler />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <ToastContainer />
       </Router>
     </div>
   )

@@ -5,7 +5,7 @@ const Header = () => {
     <div id="topSection" className="flex justify-start my-5">
       <div className="backCard bg-secondary w-28 h-28 flex justify-center items-center rounded-lg -rotate-12">
         <img
-          className="avatar w-28 h-28 rounded-full object-cover rotate-6"
+          className="avatar w-28 h-28 rounded-full object-cover rotate-12"
           src={avatar}
           alt=""
         />
