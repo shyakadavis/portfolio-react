@@ -1,12 +1,7 @@
 import React from 'react'
 import ContactForm from '../components/ContactForm'
-import {
-  AiOutlineInstagram,
-  AiOutlineTwitter,
-  AiFillGithub,
-  AiOutlineMail,
-  AiFillLinkedin
-} from 'react-icons/ai'
+import SocialLinks from '../components/SocialLinks'
+
 const Contact = () => {
   return (
     <main>
@@ -23,18 +18,8 @@ const Contact = () => {
             </p>
             <p>Cheers.</p>
           </div>
-          <div className="icons grid grid-cols-5 text-secondary">
-            <a href="mailto:shyakakingdavis@gmail.com">
-              <AiOutlineMail size={25} />
-            </a>
-            <a href="https://rw.linkedin.com/in/davis-shyaka-506910232">
-              <AiFillLinkedin size={25} />
-            </a>
-            <a href="https://github.com/davis-shyaka">
-              <AiFillGithub size={25} />
-            </a>
-            <AiOutlineInstagram size={25} />
-            <AiOutlineTwitter size={25} />
+          <div className="icons">
+            <SocialLinks />
           </div>
         </div>
         <div className="form">
