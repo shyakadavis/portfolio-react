@@ -1,5 +1,5 @@
-import { SocialIcon } from '../icons/social'
-import { OtherIcon } from '../icons/other'
+import { SocialIcon } from './icons/social'
+import { OtherIcon } from './icons/other'
 interface Props {
   title: string
   description: string

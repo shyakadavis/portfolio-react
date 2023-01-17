@@ -12,7 +12,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #020917;
   --white: white;
   --black: black;
   --primary: #051937;
@@ -49,6 +49,7 @@ body {
   background-image: var(--bg-gradient);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  padding-bottom: 50px;
   /* overflow: hidden; */
   /* align-items: center; */
   /* height: 100vh; */

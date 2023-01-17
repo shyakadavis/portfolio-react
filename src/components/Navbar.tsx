@@ -1,57 +1,90 @@
-import { Link, NavLink } from 'react-router-dom'
-import '../assets/styles/navbar.css'
+import { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import '../assets/styles/navbar.css';
+
+// const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+interface RouteLinks {
+  title: string;
+  href: string;
+}
+
+const routes: RouteLinks[] = [
+  {
+    title: 'Home',
+    href: '/',
+  },
+  {
+    title: 'About',
+    href: '/about',
+  },
+  {
+    title: 'Blogs',
+    href: '/blogs',
+  },
+  {
+    title: 'Projects',
+    href: '/projects',
+  },
+  {
+    title: 'Contact',
+    href: '/contact',
+  },
+  {
+    title: 'Boiler',
+    href: '/boiler',
+  },
+];
 
 const Navbar = () => {
   let activeStyle = {
     textDecoration: 'underline',
-    color: '#a8eb12'
-  }
+    color: '#a8eb12',
+  };
 
-  let activeClassName = 'underline'
+  let activeClassName = 'underline';
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('auth-token')) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
     <header id="globalHeader">
       <nav id="globalNav">
-        <section className="menu">
-          <NavLink
-            to="/"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/about"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/blogs"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Blogs
-          </NavLink>
-          <NavLink
-            to="/projects"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Projects
-          </NavLink>
-          <NavLink
-            to="/contact"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Contact
-          </NavLink>
-          <NavLink
-            to="/boiler"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Boiler
-          </NavLink>
+        <section className="menu text-sm md:text-xl">
+          {routes.map((link, index) => (
+            <NavLink
+              key={index}
+              to={link.href}
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              {link.title}
+            </NavLink>
+          ))}
+
+          {isLoggedIn ? (
+            <NavLink
+              to="/logout"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Log Out
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/login"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Log In
+            </NavLink>
+          )}
         </section>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

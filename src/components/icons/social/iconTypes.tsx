@@ -6,3 +6,4 @@ export type IconName =
   | 'twitter'
   | 'website'
   | 'external'
+  | 'internal';

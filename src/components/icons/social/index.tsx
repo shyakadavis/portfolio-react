@@ -1,19 +1,19 @@
-import React, { FunctionComponent } from 'react'
-import { IconName } from './iconTypes'
+import React, { FunctionComponent } from 'react';
+import { IconName } from './iconTypes';
 import {
   AiOutlineMail,
   AiOutlineGithub,
   AiOutlineFacebook,
   AiOutlineTwitter,
-  AiOutlineGlobal
-} from 'react-icons/ai'
-import { FaLinkedinIn } from 'react-icons/fa'
-import { FiExternalLink, FiMail } from 'react-icons/fi'
+  AiOutlineGlobal,
+} from 'react-icons/ai';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { FiExternalLink, FiMail, FiLink2 } from 'react-icons/fi';
 
 interface Props {
-  kind: IconName
-  href?: string
-  size: number
+  kind: IconName;
+  href?: string;
+  size: number;
 }
 
 export const SocialIcon: FunctionComponent<Props> = ({ kind, href, size }) => {
@@ -24,13 +24,14 @@ export const SocialIcon: FunctionComponent<Props> = ({ kind, href, size }) => {
     linkedin: FaLinkedinIn,
     twitter: AiOutlineTwitter,
     website: AiOutlineGlobal,
-    external: FiExternalLink
-  }
+    external: FiExternalLink,
+    internal: FiLink2,
+  };
 
-  const SocialSvg = iconMap[kind]
+  const SocialSvg = iconMap[kind];
 
   if (!SocialSvg) {
-    return null
+    return null;
   }
 
   if (
@@ -38,7 +39,7 @@ export const SocialIcon: FunctionComponent<Props> = ({ kind, href, size }) => {
     (kind === 'mail' &&
       !/^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(href))
   )
-    return null
+    return null;
 
   return (
     <a
@@ -52,5 +53,5 @@ export const SocialIcon: FunctionComponent<Props> = ({ kind, href, size }) => {
         className={`text-gray-700 hover:text-secondary dark:text-gray-200 dark:hover:text-primary-color-dark-500 h-${size} w-${size}`}
       />
     </a>
-  )
-}
+  );
+};

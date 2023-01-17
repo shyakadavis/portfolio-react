@@ -13,8 +13,8 @@
   justify-self: flex-end;
   align-items: center;
   justify-content: center;
-  max-width: 430px;
-  width: calc(430 / 1000 * 100vh);
+  max-width: 600px;
+  width: calc(600 / 1000 * 100vh);
   height: 1em;
   transform: rotate(90deg);
   transform-origin: 0 100%;
