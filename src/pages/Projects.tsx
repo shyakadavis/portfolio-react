@@ -1,6 +1,6 @@
 import Header from '../components/Header'
 import ScrollToTop from '../components/ScrollToTop'
-import ProjectCard from '../components/ui/ProjectCard'
+import ProjectCard from '../components/ProjectCard'
 import projectsData from '../data/projectsData'
 
 const Projects = () => {

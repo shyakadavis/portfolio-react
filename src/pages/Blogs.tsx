@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import ScrollToTop from '../components/ScrollToTop';
-import BlogCard from '../components/ui/BlogCard';
+import BlogCard from '../components/BlogCard';
 import blogsData from '../data/blogsData';
 
 const Blogs = () => {
@@ -19,6 +19,8 @@ const Blogs = () => {
             tag1={blog?.tag1}
             tag2={blog?.tag2}
             tag3={blog?.tag3}
+            createdAt={blog?.createdAt}
+            comments={blog?.comments}
           />
         ))}
       </div>

@@ -1,5 +1,5 @@
-import { SocialIcon } from '../icons/social';
-import { OtherIcon } from '../icons/other';
+import { SocialIcon } from './icons/social';
+import { OtherIcon } from './icons/other';
 import { Link } from 'react-router-dom';
 interface Props {
   id: number;
@@ -10,7 +10,16 @@ interface Props {
   tag1: string;
   tag2: string;
   tag3: string;
+  createdAt?: Date;
+  comments?: IComment[];
 }
+
+interface IComment {
+  comment: string;
+  user: string;
+  createdAt: Date;
+}
+
 const Card: React.FC<Props> = ({
   id,
   title,
@@ -20,6 +29,8 @@ const Card: React.FC<Props> = ({
   tag1,
   tag2,
   tag3,
+  createdAt,
+  comments,
 }) => (
   <div className="md p-4 md:w-1/2" style={{ maxWidth: '544px' }}>
     <div className="h-full transform overflow-hidden rounded-md border-[1.2px] border-solid border-secondary bg-transparent bg-opacity-20 transition duration-250 hover:rounded-md hover:border-tertiary hover:bg-gray-300 dark:border-secondary dark:hover:border-tertiary dark:hover:bg-matte">
@@ -30,11 +41,7 @@ const Card: React.FC<Props> = ({
               <OtherIcon kind="folder" className="text-tertiary w-7" />
             </div>
             <div className="flex flex-row justify-between ">
-              {/* <div className="mx-1.5">
-                {href ? (
-                  <SocialIcon kind="internal" href={href} size={6} />
-                ) : null}
-              </div> */}
+              <div className="mx-1.5">{createdAt?.toDateString()}</div>
             </div>
           </div>
           <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">

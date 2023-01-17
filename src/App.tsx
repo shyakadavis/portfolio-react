@@ -16,7 +16,7 @@ import BlogView from './pages/BlogView';
 
 function App() {
   return (
-    <div className="max-w-screen-xl mx-auto px-11 md:px-5">
+    <div className="max-w-screen-xl mx-auto px-11 md:px-3">
       <Router>
         <Navbar />
         <Routes>
