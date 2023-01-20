@@ -1,11 +1,11 @@
-import React from 'react'
-import ContactForm from '../components/ContactForm'
-import SocialLinks from '../components/SocialLinks'
+import React from 'react';
+import ContactForm from '../components/ContactForm';
+import SocialLinks from '../components/SocialLinks';
 
 const Contact = () => {
   return (
     <main>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 rounded-xl border border-tertiary bg-matte">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 rounded-xl border border-tertiary bg-primary">
         <div className="summary grid">
           <div></div>
           <div className="text">
@@ -27,7 +27,7 @@ const Contact = () => {
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

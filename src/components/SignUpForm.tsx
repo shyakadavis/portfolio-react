@@ -1,33 +1,39 @@
+import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { toast } from 'react-toastify';
 
-const ContactForm = () => {
+const SignUpForm = () => {
   const inputLabelStyles = 'mt-5 mb-2 w-full';
   const inputFieldStyles =
     'bg-matte border border-gray-300 text-white text-sm rounded-lg outline-none focus:ring-1 focus:ring-tertiary w-full p-2.5';
   const errorFeedbackStyles = 'text-red-500 mt-1 w-full';
 
-  // notification after  sending the message
-  const notifySuccess = () =>
-    toast.success(`Message Sent. I'll get back to you soon. 🙂`, {
-      theme: 'colored',
-    });
   return (
-    <section>
+    <section className="w-full">
       <Formik
-        initialValues={{ name: '', email: '', subject: '', message: '' }}
+        initialValues={{
+          surname: '',
+          givenName: '',
+          email: '',
+          password: '',
+          confirm_password: '',
+        }}
         onSubmit={async (values) => {
-          await new Promise((resolve) => setTimeout(resolve, 500)).then((e) => {
-            notifySuccess();
-          });
+          await new Promise((resolve) => setTimeout(resolve, 500));
           alert(JSON.stringify(values, null, 2));
         }}
         validationSchema={Yup.object().shape({
-          name: Yup.string().required('Names are required'),
+          surname: Yup.string().required('Surname is required'),
+          givenName: Yup.string().required('Given Name is required'),
           email: Yup.string().email().required('Email is required'),
-          subject: Yup.string().required('Subject is required'),
-          message: Yup.string().required('Message is required'),
+          password: Yup.string().required('Password is required'),
+          confirm_password: Yup.string().when('password', {
+            is: (val: []) => (val && val.length > 0 ? true : false),
+            then: Yup.string().oneOf(
+              [Yup.ref('password')],
+              'Passwords do not match',
+            ),
+          }),
         })}
       >
         {(props) => {
@@ -44,28 +50,55 @@ const ContactForm = () => {
           } = props;
           return (
             <form onSubmit={handleSubmit}>
-              {/* their names */}
+              {/* their surname */}
               <label
-                htmlFor="name"
+                htmlFor="surname"
                 style={{ display: 'block' }}
                 className={inputLabelStyles}
               >
-                Name
+                Surname
               </label>
               <input
-                id="name"
-                placeholder="Enter your name"
+                id="surname"
+                placeholder="Enter your surname"
                 type="text"
-                value={values.name}
+                value={values.surname}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className={inputFieldStyles}
                 style={
-                  errors.name && touched.name ? { border: '2px solid red' } : {}
+                  errors.surname && touched.surname
+                    ? { border: '1px solid red' }
+                    : {}
                 }
               />
-              {errors.name && touched.name && (
-                <div className={errorFeedbackStyles}>{errors.name}</div>
+              {errors.surname && touched.surname && (
+                <div className={errorFeedbackStyles}>{errors.surname}</div>
+              )}
+              {/* their givenName */}
+              <label
+                htmlFor="givenName"
+                style={{ display: 'block' }}
+                className={inputLabelStyles}
+              >
+                GivenName
+              </label>
+              <input
+                id="givenName"
+                placeholder="Enter your givenName"
+                type="text"
+                value={values.givenName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={inputFieldStyles}
+                style={
+                  errors.givenName && touched.givenName
+                    ? { border: '1px solid red' }
+                    : {}
+                }
+              />
+              {errors.givenName && touched.givenName && (
+                <div className={errorFeedbackStyles}>{errors.givenName}</div>
               )}
               {/* their email */}
               <label
@@ -85,61 +118,64 @@ const ContactForm = () => {
                 className={inputFieldStyles}
                 style={
                   errors.email && touched.email
-                    ? { border: '2px solid red' }
+                    ? { border: '1px solid red' }
                     : {}
                 }
               />
               {errors.email && touched.email && (
                 <div className={errorFeedbackStyles}>{errors.email}</div>
               )}
-              {/* their subject */}
+              {/* their password */}
               <label
-                htmlFor="subject"
+                htmlFor="password"
                 style={{ display: 'block' }}
                 className={inputLabelStyles}
               >
-                Subject
+                Password
               </label>
               <input
-                id="subject"
-                placeholder="Enter your subject"
-                type="text"
-                value={values.subject}
+                id="password"
+                placeholder="Enter your password"
+                type="password"
+                value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className={inputFieldStyles}
                 style={
-                  errors.subject && touched.subject
-                    ? { border: '2px solid red' }
+                  errors.password && touched.password
+                    ? { border: '1px solid red' }
                     : {}
                 }
               />
-              {errors.subject && touched.subject && (
-                <div className={errorFeedbackStyles}>{errors.subject}</div>
+              {errors.password && touched.password && (
+                <div className={errorFeedbackStyles}>{errors.password}</div>
               )}
-              {/* their message */}
+              {/* their confirm_password */}
               <label
-                htmlFor="message"
+                htmlFor="confirm_password"
                 style={{ display: 'block' }}
                 className={inputLabelStyles}
               >
-                Message
+                Confirm Password
               </label>
-              <textarea
-                id="message"
-                placeholder="Enter your message"
-                value={values.message}
+              <input
+                id="confirm_password"
+                placeholder="Confirm your password"
+                type="password"
+                value={values.confirm_password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className={inputFieldStyles}
                 style={
-                  errors.message && touched.message
-                    ? { border: '2px solid red' }
+                  errors.confirm_password && touched.confirm_password
+                    ? { border: '1px solid red' }
                     : {}
                 }
-              ></textarea>
-              {errors.message && touched.message && (
-                <div className={errorFeedbackStyles}>{errors.message}</div>
+              />
+              {errors.confirm_password && touched.confirm_password && (
+                <div className={errorFeedbackStyles}>
+                  {errors.confirm_password}
+                </div>
               )}
               {/* the submit button */}
               <button
@@ -165,4 +201,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default SignUpForm;

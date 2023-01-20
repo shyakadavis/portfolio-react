@@ -10,9 +10,8 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from './components/Login';
-import Signup from './components/Signup';
 import BlogView from './pages/BlogView';
+import Auth from './pages/Auth';
 
 function App() {
   return (
@@ -26,8 +25,7 @@ function App() {
           <Route path="/blog/:slug" element={<BlogView />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sign-up" element={<Signup />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/boiler" element={<Boiler />} />
           <Route path="*" element={<Error />} />
         </Routes>

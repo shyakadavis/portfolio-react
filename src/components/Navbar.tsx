@@ -75,7 +75,7 @@ const Navbar = () => {
             </NavLink>
           ) : (
             <NavLink
-              to="/login"
+              to="/auth"
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               Log In
