@@ -1,21 +1,21 @@
-import React from 'react'
-import { SiMacos } from 'react-icons/si'
-import js from '../assets/svg/js.svg'
-import php from '../assets/svg/php.svg'
-import vs from '../assets/svg/vs.svg'
-import figma from '../assets/svg/figma.svg'
-import git from '../assets/svg/git.svg'
-import mongodb from '../assets/svg/mongodb.svg'
-import nodejs from '../assets/svg/nodejs.svg'
-import html5 from '../assets/svg/html5.svg'
-import css from '../assets/svg/css.svg'
-import tailwind from '../assets/svg/tailwind.svg'
-import postman from '../assets/svg/postman.svg'
-import mozilla from '../assets/svg/mozilla.svg'
-import reactjs from '../assets/svg/reactjs.svg'
-import laravel from '../assets/svg/laravel.svg'
-import ubuntu from '../assets/svg/ubuntu.svg'
-import vite from '../assets/svg/vitejs.svg'
+import React from 'react';
+import { SiMacos } from 'react-icons/si';
+import js from '../assets/svg/js.svg';
+import php from '../assets/svg/php.svg';
+import vs from '../assets/svg/vs.svg';
+import figma from '../assets/svg/figma.svg';
+import git from '../assets/svg/git.svg';
+import mongodb from '../assets/svg/mongodb.svg';
+import nodejs from '../assets/svg/nodejs.svg';
+import html5 from '../assets/svg/html5.svg';
+import css from '../assets/svg/css.svg';
+import tailwind from '../assets/svg/tailwind.svg';
+import postman from '../assets/svg/postman.svg';
+import mozilla from '../assets/svg/mozilla.svg';
+import reactjs from '../assets/svg/reactjs.svg';
+import laravel from '../assets/svg/laravel.svg';
+import ubuntu from '../assets/svg/ubuntu.svg';
+import vite from '../assets/svg/vitejs.svg';
 
 const TechStack = () => {
   return (
@@ -86,7 +86,7 @@ const TechStack = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TechStack
+export default TechStack;

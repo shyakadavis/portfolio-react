@@ -1,34 +1,33 @@
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-import { toast } from 'react-toastify'
-import { SocialIcon } from './icons/social'
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 const ContactForm = () => {
-  const inputLabelStyles = 'mt-5 mb-2 w-full'
+  const inputLabelStyles = 'mt-5 mb-2 w-full';
   const inputFieldStyles =
-    'bg-gray-700 border border-gray-300 text-white text-sm rounded-lg outline-none focus:ring-1 focus:ring-tertiary w-full p-2.5'
-  const errorFeedbackStyles = 'text-red-500 mt-1 w-full'
+    'bg-matte border border-gray-300 text-white text-sm rounded-lg outline-none focus:ring-1 focus:ring-tertiary w-full p-2.5';
+  const errorFeedbackStyles = 'text-red-500 mt-1 w-full';
 
   // notification after  sending the message
   const notifySuccess = () =>
-    toast.success(`😄 Message Sent. I'll get back to you soon.`, {
-      theme: 'colored'
-    })
+    toast.success(`Message Sent. I'll get back to you soon. 🙂`, {
+      theme: 'colored',
+    });
   return (
     <section>
       <Formik
         initialValues={{ name: '', email: '', subject: '', message: '' }}
         onSubmit={async (values) => {
           await new Promise((resolve) => setTimeout(resolve, 500)).then((e) => {
-            notifySuccess()
-          })
-          alert(JSON.stringify(values, null, 2))
+            notifySuccess();
+          });
+          alert(JSON.stringify(values, null, 2));
         }}
         validationSchema={Yup.object().shape({
           name: Yup.string().required('Names are required'),
           email: Yup.string().email().required('Email is required'),
           subject: Yup.string().required('Subject is required'),
-          message: Yup.string().required('Message is required')
+          message: Yup.string().required('Message is required'),
         })}
       >
         {(props) => {
@@ -41,8 +40,8 @@ const ContactForm = () => {
             handleChange,
             handleBlur,
             handleSubmit,
-            handleReset
-          } = props
+            handleReset,
+          } = props;
           return (
             <form onSubmit={handleSubmit}>
               {/* their names */}
@@ -154,16 +153,16 @@ const ContactForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className=" border focus:outline-none focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-gray-800 text-white border-gray-600 hover:bg-gray-700 hover:border-gray-600 focus:ring-gray-700 my-5 disabled:text-gray-400 disabled:bg-gray-300"
+                className=" border focus:outline-none focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-secondary text-black border-gray-600 hover:bg-complementary hover:border-gray-600 focus:ring-gray-700 my-5 disabled:text-gray-400 disabled:bg-[#557A15]"
               >
                 Submit
               </button>
             </form>
-          )
+          );
         }}
       </Formik>
     </section>
-  )
-}
+  );
+};
 
-export default ContactForm
+export default ContactForm;

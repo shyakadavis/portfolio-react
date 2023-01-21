@@ -1,8 +1,7 @@
 .technology-stack > .icons img {
-  width: 60px;
-  /* height: 50px; */
+  @apply w-12;
 }
 
 .technology-stack > .icons {
-  display: flex;
+  @apply flex flex-col md:flex-row;
 }
