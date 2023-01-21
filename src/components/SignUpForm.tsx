@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import client from '../api/client';
+import { Navigate } from 'react-router-dom';
 
 const SignUpForm = () => {
   const inputLabelStyles = 'mt-5 mb-2 w-full';
@@ -18,15 +20,37 @@ const SignUpForm = () => {
           password: '',
           confirm_password: '',
         }}
-        onSubmit={async (values) => {
-          await new Promise((resolve) => setTimeout(resolve, 500));
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values, { setFieldError }) => {
+          try {
+            const response = await client.post('/user/sign_up', { ...values });
+            const data = response.data;
+            if (data.success === true) {
+              // <Navigate to="/auth" state={{ from: location }} replace />;
+              location.reload();
+            }
+          } catch (error: any) {
+            const response = error.response.data;
+            if (response.statusCode == 409) {
+              Object.entries(response.data).forEach(([field, message]) => {
+                setFieldError('email', response.data[0].message);
+              });
+            } else {
+              console.log('Error signing up:', error.message);
+            }
+          }
+          // await new Promise((resolve) => setTimeout(resolve, 500));
+          // alert(JSON.stringify(values, null, 2));
         }}
         validationSchema={Yup.object().shape({
           surname: Yup.string().required('Surname is required'),
           givenName: Yup.string().required('Given Name is required'),
           email: Yup.string().email().required('Email is required'),
-          password: Yup.string().required('Password is required'),
+          password: Yup.string()
+            .required('Password is required')
+            .matches(
+              /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+              'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character',
+            ),
           confirm_password: Yup.string().when('password', {
             is: (val: []) => (val && val.length > 0 ? true : false),
             then: Yup.string().oneOf(

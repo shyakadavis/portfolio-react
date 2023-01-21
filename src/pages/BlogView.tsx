@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import BlogHeader from '../components/BlogHeader';
 import CommentCard from '../components/CommentCard';
 import CommentForm from '../components/CommentForm';
-import Comments from '../components/Comments';
-import Button from '../components/ui/Button';
+import ScrollToTop from '../components/ScrollToTop';
 import blogsData from '../data/blogsData';
 
 interface IBlog {
@@ -49,6 +48,7 @@ const Blog = () => {
 
   return (
     <div>
+      <ScrollToTop />
       {typeof blog === 'object' && blog && blog.title && (
         <>
           <section>

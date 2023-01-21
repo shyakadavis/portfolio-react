@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../assets/styles/navbar.css';
-
-// const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 interface RouteLinks {
   title: string;
@@ -12,7 +10,7 @@ interface RouteLinks {
 const routes: RouteLinks[] = [
   {
     title: 'Home',
-    href: '/',
+    href: '/home',
   },
   {
     title: 'About',

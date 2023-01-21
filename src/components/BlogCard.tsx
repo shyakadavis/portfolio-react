@@ -1,6 +1,8 @@
 import { SocialIcon } from './icons/social';
 import { OtherIcon } from './icons/other';
 import { Link } from 'react-router-dom';
+import { AiOutlineComment } from 'react-icons/ai';
+import { FcLike } from 'react-icons/fc';
 interface Props {
   id: number;
   title: string;
@@ -40,7 +42,14 @@ const Card: React.FC<Props> = ({
             <div className="my-2">
               <OtherIcon kind="folder" className="text-tertiary w-7" />
             </div>
-            <div className="flex flex-row justify-between ">
+            <div className="flex flex-row justify-between">
+              <div className="mx-1.5 flex flex-row justify-between items-center">
+                <FcLike />
+                {20}
+              </div>
+              <div className="mx-1.5 flex flex-row justify-between items-center">
+                <AiOutlineComment /> 20
+              </div>
               <div className="mx-1.5">{createdAt?.toDateString()}</div>
             </div>
           </div>
