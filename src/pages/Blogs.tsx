@@ -2,25 +2,47 @@ import Header from '../components/Header';
 import ScrollToTop from '../components/ScrollToTop';
 import BlogCard from '../components/BlogCard';
 import blogsData from '../data/blogsData';
+import { useEffect, useState } from 'react';
+import client from '../api/client';
 
-const Blogs = () => {
+
+
+interface IBlogsData {
+  cover: string;
+  title: string;
+  caption: string;
+  content: string;
+  createdAt: Date;
+  _id: string;
+  comments: [];
+  likes: [];
+}
+
+const Blogs = ()=> {
+  const [blogs, setBlogs] = useState<IBlogsData[]>([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await client.get('post/all');
+      const data = await response.data;
+      console.log(data);
+      setBlogs(data.data);
+    } catch (error: any) {
+      console.log(`Error fetching posts: `, error.message);
+    }
+  };
+
   return (
     <section>
       <Header />
       <div className="-m-4 flex flex-wrap justify-center">
-        {blogsData?.map((blog, index) => (
+        {blogs.map((blog, index) => (
           <BlogCard
-            id={index + 1}
-            key={index}
-            title={blog?.title}
-            description={blog?.caption}
-            imgSrc={blog?.imgSrc}
-            href={blog?.href}
-            tag1={blog?.tag1}
-            tag2={blog?.tag2}
-            tag3={blog?.tag3}
-            createdAt={blog?.createdAt}
-            comments={blog?.comments}
+          key={blog._id}
+          blog={blog}
           />
         ))}
       </div>

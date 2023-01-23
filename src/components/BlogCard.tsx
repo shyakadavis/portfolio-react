@@ -3,17 +3,20 @@ import { OtherIcon } from './icons/other';
 import { Link } from 'react-router-dom';
 import { AiOutlineComment } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
+
 interface Props {
-  id: number;
+  blog: IBlog;
+}
+
+interface IBlog {
+  cover: string;
   title: string;
-  description: string;
-  imgSrc: string;
-  href: string;
-  tag1: string;
-  tag2: string;
-  tag3: string;
-  createdAt?: Date;
-  comments?: IComment[];
+  caption: string;
+  content: string;
+  createdAt: Date;
+  _id: string;
+  comments: [];
+  likes: [];
 }
 
 interface IComment {
@@ -22,21 +25,10 @@ interface IComment {
   createdAt: Date;
 }
 
-const Card: React.FC<Props> = ({
-  id,
-  title,
-  description,
-  imgSrc,
-  href,
-  tag1,
-  tag2,
-  tag3,
-  createdAt,
-  comments,
-}) => (
+const Card: React.FC<Props> = ({ blog }) => (
   <div className="md p-4 md:w-1/2" style={{ maxWidth: '544px' }}>
     <div className="h-full transform overflow-hidden rounded-md border-[1.2px] border-solid border-secondary bg-transparent bg-opacity-20 transition duration-250 hover:rounded-md hover:border-tertiary hover:bg-gray-300 dark:border-secondary dark:hover:border-tertiary dark:hover:bg-matte">
-      <Link to={`/blog/${id}`}>
+      <Link to={`/blog/${blog._id}`} state={blog}>
         <div className="p-6">
           <div className="flex flex-row items-center justify-between">
             <div className="my-2">
@@ -44,25 +36,24 @@ const Card: React.FC<Props> = ({
             </div>
             <div className="flex flex-row justify-between">
               <div className="mx-1.5 flex flex-row justify-between items-center">
-                <FcLike />
-                {20}
+                <FcLike /> {blog.likes?.length}
               </div>
               <div className="mx-1.5 flex flex-row justify-between items-center">
-                <AiOutlineComment /> 20
+                <AiOutlineComment /> {blog.comments?.length}
               </div>
-              <div className="mx-1.5">{createdAt?.toDateString()}</div>
+              <div className="mx-1.5">{}</div>
             </div>
           </div>
           <h2 className="mb-3 text-2xl font-bold leading-8 tracking-tight">
-            {title}
+            {blog.title}
           </h2>
 
           <p className="prose mb-3 max-w-none text-gray-500 dark:text-gray-400">
-            {description}
+            {blog.content}
           </p>
           <div className="flex flex-row justify-between">
             <div className="text-sm text-gray-400">
-              {tag1} &#8226; {tag2} &#8226; {tag3}
+              {/* {tag1} &#8226; {tag2} &#8226; {tag3} */}
             </div>
           </div>
         </div>

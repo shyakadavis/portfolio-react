@@ -1,48 +1,35 @@
 import { createContext, useState } from 'react';
-
+import jwtDecode from 'jwt-decode';
+import { login } from '../services/auth.service';
 interface IAuthProviderProps {
   children: React.ReactNode;
 }
 
 interface IUser {
-  isAdmin: boolean;
-  token: string | undefined | null;
+  token: string;
   isAuthenticated: boolean;
+  isAdmin: boolean;
 }
 
-interface IAuthContext {
+interface ICurrentUserContext {
   user: IUser;
-  login: (token: string) => void;
-  logout: () => void;
+  setUser: React.Dispatch<React.SetStateAction<IUser>>;
 }
 
-const initialUserState: IUser = {
-  isAdmin: false,
-  token: null,
-  isAuthenticated: false,
-};
-
-const initialState: IAuthContext = {
-  user: initialUserState,
-  login: (token: string) => {},
-  logout: () => {},
-};
-
-const AuthContext = createContext<IAuthContext>(initialState);
+const AuthContext = createContext<ICurrentUserContext>({
+  user: { token: '', isAuthenticated: false, isAdmin: false },
+  setUser: () => {},
+});
 
 export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<IUser>(initialUserState);
-
-  const login = (token: string) => {
-    setUser({ ...user, isAuthenticated: true, token });
-  };
-
-  const logout = () => {
-    setUser({ ...user, isAuthenticated: false, token: null });
-  };
+  const [user, setUser] = useState<IUser>({
+    token: '',
+    isAuthenticated: false,
+    isAdmin: false,
+  });
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

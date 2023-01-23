@@ -10,13 +10,15 @@ import Projects from './pages/Projects';
 import BlogView from './pages/BlogView';
 import Auth from './pages/Auth';
 import Dashboard from './pages/admin/Dashboard';
-import Content from './pages/admin/Content';
 import Mail from './pages/admin/Mail';
 import Users from './pages/admin/Users';
 import Layout from './layouts/Layout';
 import RequireAuth from './components/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdminLayout from './layouts/Admin';
+import AdminBlogs from './pages/admin/Blogs';
+import CreateBlog from './components/admin/CreateBlog';
 
 const ROLES = {
   User: 2001,
@@ -39,16 +41,20 @@ function App() {
           <Route path="auth" element={<Auth />} />
           <Route path="boiler" element={<Boiler />} />
 
-          {/* protected routes */}
-          <Route element={<RequireAuth />}>
+          {/* catch all */}
+          <Route path="*" element={<Error />} />
+        </Route>
+
+        {/* protected/admin routes */}
+        {/* development */}
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<AdminLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="content" element={<Content />} />
+            <Route path="content/blogs" element={<AdminBlogs />} />
+            <Route path="content/blogs/create" element={<CreateBlog />} />
             <Route path="users" element={<Users />} />
             <Route path="mail" element={<Mail />} />
           </Route>
-
-          {/* catch all */}
-          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
       <ToastContainer />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import BlogHeader from '../components/BlogHeader';
 import CommentCard from '../components/CommentCard';
 import CommentForm from '../components/CommentForm';
@@ -21,30 +21,35 @@ interface IBlog {
 }
 
 interface IComment {
+  _id: string;
   comment: string;
   user: string;
-  createdAt: Date;
+  createdAt: string;
+  blog: string;
 }
 const Blog = () => {
   const { slug } = useParams();
-  const [blog, setBlog] = useState<IBlog>({
-    id: '',
-    title: '',
-    caption: '',
-    content: '',
-    imgSrc: '',
-    href: '',
-    tag1: '',
-    tag2: '',
-    tag3: '',
-    createdAt: new Date(),
-    comments: [{ comment: '', user: '', createdAt: new Date() }],
-  });
+  const location = useLocation();
+  const blog = location.state;
 
-  useEffect(() => {
-    const filteredBlog = blogsData.filter((blog) => blog.id === `${slug}`);
-    setBlog(filteredBlog[0]);
-  }, [slug]);
+  // const [blog, setBlog] = useState<IBlog>({
+  //   id: '',
+  //   title: '',
+  //   caption: '',
+  //   content: '',
+  //   imgSrc: '',
+  //   href: '',
+  //   tag1: '',
+  //   tag2: '',
+  //   tag3: '',
+  //   createdAt: new Date(),
+  //   comments: [{ comment: '', user: '', createdAt: new Date() }],
+  // });
+
+  // useEffect(() => {
+  //   const filteredBlog = blogsData.filter((blog) => blog.id === `${slug}`);
+  //   setBlog(filteredBlog[0]);
+  // }, [slug]);
 
   return (
     <div>
@@ -69,14 +74,16 @@ const Blog = () => {
                       </h2>
                     </div>
                     {/* Form to submit a comment */}
-                    <CommentForm />
+                    <CommentForm postId={blog._id} />
                     {/* Iterate through our comments array and render them */}
                     {/* Since the section expects one child prop, and here we are passing more than 1, wrap the component in a React Fragment */}
                     <>
-                      {blog.comments.map((item) => (
+                      {blog.comments.map((item: IComment) => (
                         <CommentCard
+                          key={item._id}
                           comment={item.comment}
                           user={item.user}
+                          blog={item._id}
                           createdAt={item.createdAt}
                         />
                       ))}

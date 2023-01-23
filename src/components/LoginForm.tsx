@@ -6,7 +6,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import client from '../api/client';
 
 const LoginForm = () => {
-  const { login } = useAuth();
+  const { setUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/home';
@@ -25,7 +25,8 @@ const LoginForm = () => {
             const response = await client.post('/user/log_in', { ...values });
             const data = response.data;
             if (data.success === true) {
-              login(data.data[0].token);
+              console.log(data.data[0].token);
+              setUser(data.data[0].token);
               navigate(from, { replace: true });
             } else if (data.success === false) {
               if (data.statusCode == 404) {
@@ -123,7 +124,7 @@ const LoginForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className=" border focus:outline-none focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-secondary text-black border-gray-600 hover:bg-complementary hover:border-gray-600 focus:ring-gray-700 my-5 disabled:text-gray-400 disabled:bg-[#557A15]"
+                className=" border focus:outline-none focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-secondary text-black border-gray-600 hover:bg-complementary hover:border-gray-600 focus:ring-gray-700 my-5 disabled:text-gray-400 disabled:bg-[#272b21] disabled:cursor-not-allowed"
               >
                 Log In
               </button>

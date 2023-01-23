@@ -4,7 +4,7 @@ import Avatar from '../assets/images/avatar.jpg';
 interface Props {
   title: string;
   caption?: string;
-  createdAt?: Date;
+  createdAt?: string;
 }
 const BlogHeader: React.FC<Props> = ({ title, caption, createdAt }) => {
   return (
@@ -28,7 +28,7 @@ const BlogHeader: React.FC<Props> = ({ title, caption, createdAt }) => {
               Software Developer, wanna-be writer, among other things...
             </p>
             <p className="text-base font-light text-gray-500 dark:text-gray-400">
-              {createdAt?.toDateString()}
+              {createdAt}
             </p>
           </div>
         </div>
