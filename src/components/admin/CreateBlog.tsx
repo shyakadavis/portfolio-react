@@ -2,7 +2,6 @@ import React, { ChangeEvent, useEffect } from 'react';
 import { Field, Formik, useField, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-import FileUpload from './FileUpload';
 
 const CreateBlog = () => {
   const inputLabelStyles = 'mt-5 mb-2 w-full';
@@ -76,7 +75,6 @@ const CreateBlog = () => {
                         value={values.image}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        component={FileUpload}
                         style={
                           errors.image && touched.image
                             ? { border: '2px solid red' }
