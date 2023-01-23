@@ -7,7 +7,7 @@ const RequireAuth: React.FC<IRequireAuthProps> = () => {
   const { user } = useAuth();
   const location = useLocation();
 
-  return user?.isAuthenticated ? (
+  return user.token ? (
     <Outlet />
   ) : (
     <Navigate to="/auth" state={{ from: location }} replace />

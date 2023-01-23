@@ -3,7 +3,8 @@ import React from 'react';
 interface ICommentProps {
   comment: string;
   user: string;
-  createdAt: Date;
+  blog: string;
+  createdAt: string;
 }
 
 const CommentCard: React.FC<ICommentProps> = ({ comment, user, createdAt }) => {
@@ -20,7 +21,7 @@ const CommentCard: React.FC<ICommentProps> = ({ comment, user, createdAt }) => {
             {user}
           </p>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {createdAt.toDateString()}
+            {createdAt}
           </p>
         </div>
       </footer>

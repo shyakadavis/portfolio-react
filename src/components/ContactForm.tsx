@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import client from '../api/client';
 
 const ContactForm = () => {
   const inputLabelStyles = 'mt-5 mb-2 w-full';
@@ -13,15 +14,29 @@ const ContactForm = () => {
     toast.success(`Message Sent. I'll get back to you soon. 🙂`, {
       theme: 'colored',
     });
+  const notifyError = (message: string) =>
+    toast.error(`${message}. 😟`, {
+      theme: 'dark',
+    });
   return (
     <section>
       <Formik
         initialValues={{ name: '', email: '', subject: '', message: '' }}
-        onSubmit={async (values) => {
-          await new Promise((resolve) => setTimeout(resolve, 500)).then((e) => {
-            notifySuccess();
-          });
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values, handleReset) => {
+          try {
+            const response = await client.post('/mail/create', { ...values });
+            const data = response.data;
+            if (data.success === true) {
+              notifySuccess();
+              handleReset.resetForm();
+            }
+          } catch (error: any) {
+            notifyError(error.message);
+          }
+          // await new Promise((resolve) => setTimeout(resolve, 500)).then((e) => {
+          //   notifySuccess();
+          // });
+          // alert(JSON.stringify(values, null, 2));
         }}
         validationSchema={Yup.object().shape({
           name: Yup.string().required('Names are required'),
@@ -153,7 +168,7 @@ const ContactForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className=" border focus:outline-none focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-secondary text-black border-gray-600 hover:bg-complementary hover:border-gray-600 focus:ring-gray-700 my-5 disabled:text-gray-400 disabled:bg-[#557A15]"
+                className=" border focus:outline-none focus:ring-1 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-secondary text-black border-gray-600 hover:bg-complementary hover:border-gray-600 focus:ring-gray-700 my-5 disabled:text-gray-400 disabled:bg-[#557A15] disabled:cursor-not-allowed"
               >
                 Submit
               </button>
