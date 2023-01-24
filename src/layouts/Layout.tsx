@@ -4,9 +4,11 @@ import Navbar from '../components/Navbar';
 
 const Layout = () => {
   return (
-    <div className="App max-w-screen-xl mx-auto px-11 md:px-3">
+    <div>
       <Navbar />
-      <Outlet />
+      <div className="App max-w-screen-xl mx-auto px-3">
+        <Outlet />
+      </div>
     </div>
   );
 };

@@ -1,4 +1,11 @@
-#globalHeader {
+#toggle_nav:checked ~ div #hamburger #line{
+  @apply rotate-45 translate-y-1.5
+}
+#toggle_nav:checked ~ div #hamburger #line2{
+   @apply -rotate-45 -translate-y-1
+}
+
+/* #globalHeader {
   position: fixed;
   right: 0;
   top: 0;
@@ -57,11 +64,11 @@
 
 @media (max-width: 991.98px) {
   #globalHeader {
-    /* width: 90px; */
+    width: 90px;
   }
   #globalNav {
     width: 1000px;
     margin-top: 30px;
     margin-left: 50px;
   }
-}
+} */
