@@ -5,7 +5,7 @@ import SocialLinks from '../components/SocialLinks';
 const Contact = () => {
   return (
     <main>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 rounded-xl border border-tertiary bg-primary">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-5 rounded-xl border border-tertiary bg-primary mt">
         <div className="summary grid">
           <div></div>
           <div className="text">

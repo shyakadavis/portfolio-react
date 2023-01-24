@@ -4,9 +4,10 @@ import Avatar from '../assets/images/avatar.jpg';
 interface Props {
   title: string;
   caption?: string;
+  cover?: string;
   createdAt?: string;
 }
-const BlogHeader: React.FC<Props> = ({ title, caption, createdAt }) => {
+const BlogHeader: React.FC<Props> = ({ cover, title, caption, createdAt }) => {
   return (
     <header className="mb-4 lg:mb-6 not-format">
       <address className="flex items-center mb-6 not-italic">
@@ -39,6 +40,7 @@ const BlogHeader: React.FC<Props> = ({ title, caption, createdAt }) => {
       <h2 className="mb-4 text-xl font-bold leading-tight text-gray-900 dark:text-white">
         {caption}
       </h2>
+      <img src={cover} alt="" srcSet="" />
     </header>
   );
 };

@@ -30,9 +30,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route element={<Layout />}>
           {/* public routes */}
-          <Route path="home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="blog/:slug" element={<BlogView />} />

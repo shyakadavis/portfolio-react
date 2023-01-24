@@ -4,8 +4,7 @@ import BlogCard from '../components/BlogCard';
 import blogsData from '../data/blogsData';
 import { useEffect, useState } from 'react';
 import client from '../api/client';
-
-
+import Loading from '../components/ui/Loader';
 
 interface IBlogsData {
   cover: string;
@@ -18,7 +17,8 @@ interface IBlogsData {
   likes: [];
 }
 
-const Blogs = ()=> {
+const Blogs = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [blogs, setBlogs] = useState<IBlogsData[]>([]);
   useEffect(() => {
     fetchData();
@@ -26,28 +26,30 @@ const Blogs = ()=> {
 
   const fetchData = async () => {
     try {
+      setLoading(true);
       const response = await client.get('post/all');
       const data = await response.data;
       console.log(data);
       setBlogs(data.data);
+      setLoading(false);
     } catch (error: any) {
       console.log(`Error fetching posts: `, error.message);
     }
   };
 
   return (
-    <section>
-      <Header />
-      <div className="-m-4 flex flex-wrap justify-center">
-        {blogs.map((blog, index) => (
-          <BlogCard
-          key={blog._id}
-          blog={blog}
-          />
-        ))}
-      </div>
-      <ScrollToTop />
-    </section>
+    <>
+      {loading ? <Loading /> : null}
+      <section>
+        <Header />
+        <div className="-m-4 flex flex-wrap justify-center">
+          {blogs.map((blog, index) => (
+            <BlogCard key={blog._id} blog={blog} />
+          ))}
+        </div>
+        <ScrollToTop />
+      </section>
+    </>
   );
 };
 
